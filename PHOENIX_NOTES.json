@@ -1,0 +1,6 @@
+{
+  "build": "Ghost Phoenix v0.1",
+  "missing_assets": [
+    "icon-videos.svg"
+  ]
+}
