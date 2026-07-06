@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#10051f">
+<title>Ghost Phoenix v0.01</title>
+<style>
+:root{--bg:#05030b;--panel:#11101c;--line:#642ba5;--purple:#873cff;--purple2:#a75bff;--text:#fff;--muted:#c8bfd7}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100vh;background:radial-gradient(circle at top,#1e0b3c 0,#07030d 38%,#020204 100%);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;overscroll-behavior:none}
+button{font:inherit;cursor:pointer}
+.phone{max-width:430px;min-height:100vh;margin:0 auto;padding:18px 22px 104px;position:relative}
+.status{display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:18px;margin-bottom:10px}.icons{letter-spacing:2px}.screen{animation:fade .16s ease}@keyframes fade{from{opacity:.65;transform:translateY(4px)}to{opacity:1;transform:none}}
+.ghostLogoSmall{position:absolute;left:28px;top:70px;width:38px;height:38px;border-radius:13px;background:radial-gradient(circle at 50% 35%,#fff 0,#d9b9ff 22%,#873cff 60%,#10051f 100%);border:1px solid #873cffaa;box-shadow:0 0 12px #873cffaa,0 0 24px #873cff55;display:grid;place-items:center}
+.ghostLogoSmall:before{content:"";width:21px;height:25px;background:#fff;border-radius:14px 14px 7px 7px;clip-path:polygon(0 5%,100% 5%,100% 80%,84% 70%,68% 84%,50% 70%,32% 84%,16% 70%,0 80%);filter:drop-shadow(0 0 8px #fff)}
+.ghostLogoSmall:after{content:"";position:absolute;top:18px;left:14px;width:4px;height:4px;border-radius:50%;background:#160725;box-shadow:8px 0 0 #160725}
+.topActions{position:absolute;right:25px;top:76px;display:flex;gap:10px;align-items:center;z-index:5}
+.topActions button{width:38px;height:38px;border:0;border-radius:14px;background:#080511cc;color:#b86dff;font-size:22px;display:grid;place-items:center;box-shadow:0 0 12px #873cff44}
+.topActions .closeBtn{background:transparent;font-size:36px;color:#a95cff;box-shadow:none}
+.hero{display:grid;place-items:center;text-align:center;margin:-8px auto 14px}
+.heroGhost{width:min(190px,56vw);height:150px;border-radius:32px;background:radial-gradient(circle at 50% 36%,#fff 0,#d9b9ff 18%,#a75bff 36%,#873cff 58%,#20083b 86%,#05030b 100%);border:1px solid #873cff88;box-shadow:0 0 20px #873cff88,0 0 44px #873cff44;position:relative;display:grid;place-items:center;margin-bottom:-10px;overflow:hidden}
+.heroGhost:before{content:"";width:82px;height:95px;background:#fff5ff;border-radius:44px 44px 24px 24px;clip-path:polygon(0 8%,100% 8%,100% 82%,84% 70%,68% 84%,50% 70%,32% 84%,16% 70%,0 82%);filter:drop-shadow(0 0 18px #fff) drop-shadow(0 0 28px #873cff)}
+.heroGhost:after{content:"";position:absolute;top:58px;left:calc(50% - 20px);width:10px;height:10px;border-radius:50%;background:#170727;box-shadow:30px 0 0 #170727}
+.title{margin:0;font-size:38px;line-height:.88;font-weight:300;letter-spacing:10px;color:transparent;background:linear-gradient(180deg,#fff3ff 0%,#c678ff 47%,#7a2cff 100%);-webkit-background-clip:text;background-clip:text;text-shadow:0 0 4px #fff3,0 0 9px #873cff88,0 0 15px #873cff44}
+.subtitle{margin-top:9px;font-size:10.5px;letter-spacing:4.6px;color:#bd6dff;text-shadow:0 0 5px #873cff66}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:15px}.tile{min-height:112px;padding:14px 6px 11px;border-radius:19px;border:1px solid #642ba599;background:linear-gradient(180deg,rgba(10,8,18,.92),rgba(3,3,8,.98));box-shadow:inset 0 0 0 1px #ffffff06,0 7px 16px #0008;text-align:center;color:#fff}
+.icon{width:48px;height:48px;margin:0 auto 7px;border-radius:16px;background:radial-gradient(circle at center,#24123d,#07040c 72%);border:1px solid #873cff55;display:grid;place-items:center;box-shadow:0 0 12px #873cff44}.icon svg{width:30px;height:30px;fill:none;stroke:#c77dff;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 5px #873cff)}
+.tile span{display:block;font-size:18px;font-weight:360;text-shadow:0 1px 5px #000}.tile small{display:block;font-size:11px;color:#c8bfd7;margin-top:3px;font-weight:300}
+.nav{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(8px + env(safe-area-inset-bottom));width:min(386px,calc(100vw - 32px));z-index:999;padding:9px 10px 8px;border-radius:28px;background:rgba(5,4,12,.88);border:1px solid #5b279088;box-shadow:inset 0 0 9px #873cff0d,0 7px 18px #0009;display:grid;grid-template-columns:repeat(2,1fr);gap:4px;backdrop-filter:blur(12px)}
+.nav button{font-size:12px;font-weight:330;color:#ded7e9;display:grid;gap:2px;background:transparent;border:0;text-align:center}.navIcon{height:28px;display:grid;place-items:center}.navIcon svg{width:25px;height:25px;fill:none;stroke:#b66dff;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.calcPage .status{margin-bottom:22px}.calcTitle{text-align:center;font-weight:800;font-size:22px;margin-bottom:15px;color:#ded7e9}.calcDisplay{height:92px;border-radius:20px;background:#05050a;border:1px solid #35204d;margin-bottom:14px;padding:18px;text-align:right;font-size:38px;overflow:hidden}.calcGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.calcGrid button{height:64px;border:0;border-radius:18px;background:#1b1a23;color:white;font-size:24px;font-weight:700}.calcGrid .op{background:#33234b;color:#c79bff}.calcGrid .eq{background:linear-gradient(180deg,#974eff,#611ee4)}
+@media(max-width:390px){.phone{padding:16px 20px 104px}.status{margin-bottom:7px}.ghostLogoSmall{top:65px;left:26px;width:35px;height:35px}.topActions{top:72px;right:23px}.hero{margin:-8px auto 12px}.heroGhost{width:min(168px,52vw);height:132px;margin-bottom:-9px}.title{font-size:34px;letter-spacing:8.5px}.subtitle{font-size:9.5px;letter-spacing:4px;margin-top:8px}.grid{gap:9px;margin-top:13px}.tile{min-height:101px;padding:12px 6px 10px;border-radius:18px}.icon{width:42px;height:42px;margin-bottom:6px}.icon svg{width:27px;height:27px}.tile span{font-size:16px}.tile small{font-size:10px;margin-top:2px}}
+</style>
+</head>
+<body>
+<main id="app" class="phone"></main>
+<script>
+const app=document.getElementById("app");
+const icons={
+photo:'<svg viewBox="0 0 64 64"><rect x="10" y="14" width="44" height="36" rx="8"/><circle cx="24" cy="26" r="5"/><path d="M16 45l13-13 8 8 5-5 8 10"/></svg>',
+video:'<svg viewBox="0 0 64 64"><rect x="9" y="16" width="36" height="32" rx="8"/><path d="M45 27l12-7v24l-12-7z"/></svg>',
+files:'<svg viewBox="0 0 64 64"><path d="M11 18h19l6 7h17v25H11z"/><path d="M11 25h42"/></svg>',
+notes:'<svg viewBox="0 0 64 64"><rect x="15" y="10" width="34" height="44" rx="6"/><path d="M23 24h18M23 33h18M23 42h11"/></svg>',
+browser:'<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="23"/><path d="M9 32h46M32 9c8 8 8 38 0 46M32 9c-8 8-8 38 0 46"/></svg>',
+contacts:'<svg viewBox="0 0 64 64"><circle cx="32" cy="24" r="11"/><path d="M14 54c3-14 33-14 36 0"/></svg>',
+home:'<svg viewBox="0 0 64 64"><path d="M10 31L32 12l22 19v22H39V39H25v14H10z"/></svg>',
+hide:'<svg viewBox="0 0 64 64"><path d="M7 32s9-15 25-15 25 15 25 15-9 15-25 15S7 32 7 32z"/><path d="M17 50L50 14"/></svg>'
+};
+function nav(){return '<div class="nav"><button onclick="renderDashboard()"><span class="navIcon">'+icons.home+'</span>Home</button><button onclick="renderCalculator()"><span class="navIcon">'+icons.hide+'</span>Hide</button></div>'}
+function tile(name,sub,icon){return '<button class="tile" onclick="alert(\''+name+' shell coming next\')"><span class="icon">'+icon+'</span><span>'+name+'</span><small>'+sub+'</small></button>'}
+function renderDashboard(){app.innerHTML='<section class="screen"><div class="status"><span>9:41</span><span class="icons">▮▮▮⌁▭</span></div><div class="ghostLogoSmall"></div><div class="topActions"><button onclick="alert(\'Settings shell coming next\')">⚙</button><button class="closeBtn" onclick="renderCalculator()">×</button></div><div class="hero"><div class="heroGhost"></div><h1 class="title">GHOST</h1><div class="subtitle">PROJECT PHOENIX</div></div><div class="grid">'+tile('Photo Vault','Pictures & albums',icons.photo)+tile('Video Vault','Clips & private videos',icons.video)+tile('Files Vault','Documents & folders',icons.files)+tile('Notes Vault','Private notes',icons.notes)+tile('Browser','Secure search',icons.browser)+tile('Contacts','Private chats',icons.contacts)+'</div>'+nav()+'</section>'}
+function renderCalculator(){app.innerHTML='<section class="screen calcPage"><div class="status"><span>9:41</span><span class="icons">▮▮▮⌁▭</span></div><div class="calcTitle">Calculator</div><div class="calcDisplay" id="calcDisplay">0</div><div class="calcGrid">'+["C","±","%","÷","7","8","9","×","4","5","6","-","1","2","3","+","0",".","⌫","="].map(x=>'<button class="'+(["÷","×","-","+","="].includes(x)?"op ":"")+(x==="="?"eq":"")+'" onclick="calcPress(\''+x+'\')">'+x+'</button>').join("")+'</div></section>'}
+let calcValue="0";function calcPress(x){if(x==="C")calcValue="0";else if(x==="⌫")calcValue=calcValue.length>1?calcValue.slice(0,-1):"0";else if(x==="="){try{calcValue=String(Function("return "+calcValue.replaceAll("×","*").replaceAll("÷","/"))())}catch(e){calcValue="Error"}}else{if(calcValue==="0"||calcValue==="Error")calcValue=x;else calcValue+=x}const d=document.getElementById("calcDisplay");if(d)d.textContent=calcValue}
+renderDashboard();
+</script>
+</body>
+</html>
