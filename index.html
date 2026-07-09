@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<title>Ghost v1.0 Dashboard Final</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="app">
+<section class="hero" aria-label="Ghost Secret Vault"><img class="brand-logo" src="assets/logo.png" alt="Ghost Secret Vault"></section>
+<section class="dashboard" aria-label="Ghost dashboard"><button class="vault-card" data-route="photos" aria-label="Open Photo Vault"><img class="vault-badge" src="assets/photo-vault.png" alt="Photo Vault"></button>
+<button class="vault-card" data-route="videos" aria-label="Open Video Vault"><img class="vault-badge" src="assets/video-vault.png" alt="Video Vault"></button>
+<button class="vault-card" data-route="files" aria-label="Open Files Vault"><img class="vault-badge" src="assets/files-vault.png" alt="Files Vault"></button>
+<button class="vault-card" data-route="notes" aria-label="Open Notes Vault"><img class="vault-badge" src="assets/notes-vault.png" alt="Notes Vault"></button>
+<button class="vault-card" data-route="browser" aria-label="Open Browser"><img class="vault-badge" src="assets/browser.png" alt="Browser"></button>
+<button class="vault-card" data-route="contacts" aria-label="Open Contacts"><img class="vault-badge" src="assets/contacts.png" alt="Contacts"></button></section>
+</main>
+<nav class="nav" aria-label="Bottom navigation">
+<button class="active" data-route="home" aria-label="Home"><img src="assets/home-nav.png" alt=""></button>
+<button data-route="hide" aria-label="Hide"><img src="assets/hide-nav.png" alt=""></button>
+<button data-route="settings" aria-label="Settings"><img src="assets/settings-nav.png" alt=""></button>
+</nav>
+<div class="toast" id="toast">Ghost dashboard ready</div>
+<script src="app.js"></script>
+</body>
+</html>
