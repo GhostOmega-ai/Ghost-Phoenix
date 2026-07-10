@@ -1,1 +1,306 @@
+/* ================================
+   Ghost v1.0 Dashboard Final
+   ================================ */
 
+/* ---------- Design tokens ---------- */
+
+:root {
+  --ghost-line: rgba(183, 100, 255, 0.78);
+  --ghost-glow: 0 0 7px rgba(155, 66, 255, 0.40),
+                0 0 18px rgba(155, 66, 255, 0.15);
+  --ghost-glow-strong: 0 0 11px rgba(155, 66, 255, 0.54),
+                       0 0 26px rgba(155, 66, 255, 0.20);
+}
+
+/* ---------- Base ---------- */
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  overflow-x: hidden;
+  background: #000;
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+button {
+  color: inherit;
+  font: inherit;
+}
+
+/* ---------- App shell ---------- */
+
+.app {
+  width: min(430px, 100%);
+  min-height: 100dvh;
+  margin: 0 auto;
+  padding: max(6px, env(safe-area-inset-top)) 20px calc(106px + env(safe-area-inset-bottom));
+  background: #000;
+}
+
+/* ---------- Hero logo ---------- */
+
+.hero {
+  display: grid;
+  place-items: center;
+  min-height: 258px;
+  margin: -2px auto 18px;
+}
+
+.brand-logo {
+  width: min(380px, 96vw);
+  max-height: 312px;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 0 10px rgba(155, 66, 255, 0.36))
+    drop-shadow(0 0 24px rgba(155, 66, 255, 0.13));
+}
+
+/* ---------- Dashboard vault cards ---------- */
+
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 11px 14px;
+  margin-top: 0;
+}
+
+.vault-card {
+  display: grid;
+  place-items: center;
+  min-height: 128px;
+  padding: 2px 5px 6px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #000;
+  border: 1.55px solid var(--ghost-line);
+  border-radius: 25px;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.014),
+    inset 0 0 14px rgba(155, 66, 255, 0.026),
+    var(--ghost-glow);
+  transition:
+    transform 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.vault-card:hover,
+.vault-card:focus-visible {
+  outline: none;
+  border-color: rgba(210, 150, 255, 0.92);
+  box-shadow:
+    inset 0 0 15px rgba(155, 66, 255, 0.04),
+    var(--ghost-glow-strong);
+}
+
+.vault-card:active,
+.nav button:active {
+  transform: scale(0.97);
+}
+
+.vault-badge {
+  display: block;
+  width: 100%;
+  height: 122px;
+  object-fit: contain;
+  transform: translateY(-3px);
+  filter:
+    drop-shadow(0 0 6px rgba(155, 66, 255, 0.38))
+    drop-shadow(0 0 14px rgba(155, 66, 255, 0.12));
+}
+
+/* ---------- Bottom navigation ---------- */
+
+.nav {
+  position: fixed;
+  z-index: 20;
+  left: 50%;
+  bottom: calc(8px + env(safe-area-inset-bottom));
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  justify-items: center;
+  gap: 8px;
+  width: min(390px, calc(100vw - 34px));
+  height: 78px;
+  padding: 7px 24px 10px;
+  background: #000;
+  border: 1.55px solid var(--ghost-line);
+  border-radius: 42px;
+  box-shadow:
+    0 14px 34px rgba(0, 0, 0, 0.88),
+    inset 0 0 14px rgba(155, 66, 255, 0.026),
+    var(--ghost-glow);
+  transform: translateX(-50%);
+}
+
+.nav button {
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 62px;
+  padding: 0;
+  overflow: visible;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  opacity: 0.86;
+  transition:
+    transform 0.15s ease,
+    filter 0.15s ease,
+    opacity 0.15s ease;
+}
+
+.nav button.active {
+  opacity: 1;
+  filter: drop-shadow(0 0 7px rgba(155, 66, 255, 0.30));
+}
+
+.nav img {
+  display: block;
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  transform: translateY(-1px);
+  filter:
+    drop-shadow(0 0 5px rgba(155, 66, 255, 0.34))
+    drop-shadow(0 0 10px rgba(155, 66, 255, 0.10));
+}
+
+/* ---------- Toast ---------- */
+
+.toast {
+  position: fixed;
+  z-index: 40;
+  left: 50%;
+  bottom: calc(96px + env(safe-area-inset-bottom));
+  width: min(360px, calc(100vw - 44px));
+  padding: 12px 15px;
+  pointer-events: none;
+  background: rgba(3, 2, 7, 0.96);
+  border: 1px solid rgba(155, 66, 255, 0.35);
+  border-radius: 20px;
+  box-shadow: var(--ghost-glow);
+  font-size: 14px;
+  text-align: center;
+  opacity: 0;
+  transform: translateX(-50%) translateY(16px);
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ---------- Responsive: narrow phones ---------- */
+
+@media (max-width: 390px) {
+  .app {
+    padding-top: max(4px, env(safe-area-inset-top));
+    padding-right: 18px;
+    padding-bottom: 102px;
+    padding-left: 18px;
+  }
+
+  .hero {
+    min-height: 238px;
+    margin-top: -4px;
+    margin-bottom: 16px;
+  }
+
+  .brand-logo {
+    width: min(356px, 96vw);
+    max-height: 286px;
+  }
+
+  .dashboard {
+    gap: 9px 11px;
+  }
+
+  .vault-card {
+    min-height: 119px;
+    padding: 1px 5px 5px;
+    border-radius: 23px;
+  }
+
+  .vault-badge {
+    height: 113px;
+  }
+
+  .nav {
+    width: min(376px, calc(100vw - 28px));
+    height: 74px;
+    padding: 6px 22px 9px;
+    border-radius: 40px;
+  }
+
+  .nav button {
+    width: 64px;
+    height: 60px;
+  }
+
+  .nav img {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+/* ---------- Responsive: short screens ---------- */
+
+@media (max-height: 760px) {
+  .app {
+    padding-top: max(2px, env(safe-area-inset-top));
+    padding-bottom: 100px;
+  }
+
+  .hero {
+    min-height: 204px;
+    margin-top: -7px;
+    margin-bottom: 14px;
+  }
+
+  .brand-logo {
+    width: min(326px, 92vw);
+    max-height: 258px;
+  }
+
+  .dashboard {
+    gap: 8px 12px;
+  }
+
+  .vault-card {
+    min-height: 106px;
+    border-radius: 21px;
+  }
+
+  .vault-badge {
+    height: 101px;
+  }
+
+  .nav {
+    height: 68px;
+    padding-top: 5px;
+    padding-bottom: 8px;
+  }
+
+  .nav button {
+    width: 60px;
+    height: 56px;
+  }
+
+  .nav img {
+    width: 52px;
+    height: 52px;
+  }
+}
